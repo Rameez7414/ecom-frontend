@@ -23,7 +23,7 @@ const Home = ({ selectedCategory }) => {
           data.map(async (product) => {
             try {
               const response = await axios.get(
-                `http://ecom-backend-z0h8.onrender.com/api/product/${product.id}/image`,
+                `https://ecom-backend-z0h8.onrender.com/api/product/${product.id}/image`,
                 { responseType: "blob" }
               );
               const imageUrl = URL.createObjectURL(response.data);
