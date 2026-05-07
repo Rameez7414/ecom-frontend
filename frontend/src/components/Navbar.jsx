@@ -22,7 +22,7 @@ const Navbar = ({ onSelectCategory, onSearch }) => {
 
   const fetchData = async (value) => {
     try {
-      const response = await axios.get("http://ecom-backend-z0h8.onrender.com/api/products");
+      const response = await axios.get("https://ecom-backend-z0h8.onrender.com/api/products");
       setSearchResults(response.data);
       console.log(response.data);
     } catch (error) {
@@ -36,7 +36,7 @@ const Navbar = ({ onSelectCategory, onSearch }) => {
       setShowSearchResults(true)
     try {
       const response = await axios.get(
-        `http://ecom-backend-z0h8.onrender.com/api/products/search?keyword=${value}`
+        `https://ecom-backend-z0h8.onrender.com/api/products/search?keyword=${value}`
       );
       setSearchResults(response.data);
       setNoResults(response.data.length === 0);
@@ -78,7 +78,7 @@ const Navbar = ({ onSelectCategory, onSearch }) => {
       <header>
         <nav className="navbar navbar-expand-lg fixed-top">
           <div className="container-fluid">
-            <a className="navbar-brand" href="http://ecom-backend-z0h8.onrender.com/api/product/">
+            <a className="navbar-brand" href="https://ecom-backend-z0h8.onrender.com/api/product/">
               
             </a>
             <button
