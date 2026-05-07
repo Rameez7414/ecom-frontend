@@ -1,4 +1,4 @@
-package com.example.demo.config;
+package com.project.ecom.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +14,7 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("https://YOUR-VERCEL-URL.vercel.app")
+                        .allowedOrigins("https://ecom-frontend-mocha.vercel.app/")
                         .allowedMethods("*");
             }
         };
