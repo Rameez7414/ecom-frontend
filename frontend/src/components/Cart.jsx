@@ -16,7 +16,7 @@ const Cart = () => {
     const fetchImagesAndUpdateCart = async () => {
       console.log("Cart", cart);
       try {
-        const response = await axios.get("http://ecom-backend-z0h8.onrender.com/api/products");
+        const response = await axios.get("https://ecom-backend-z0h8.onrender.com/api/products");
         const backendProductIds = response.data.map((product) => product.id);
 
         const updatedCartItems = cart.filter((item) => backendProductIds.includes(item.id));
@@ -24,7 +24,7 @@ const Cart = () => {
           updatedCartItems.map(async (item) => {
             try {
               const response = await axios.get(
-                `http://ecom-backend-z0h8.onrender.com/api/product/${item.id}/image`,
+                `https://ecom-backend-z0h8.onrender.com/api/product/${item.id}/image`,
                 { responseType: "blob" }
               );
               const imageFile = await converUrlToFile(response.data, response.data.imageName);
@@ -109,7 +109,7 @@ const Cart = () => {
         );
   
         await axios
-          .put(`http://ecom-backend-z0h8.onrender.com/api/product/${item.id}`, cartProduct, {
+          .put(`https://ecom-backend-z0h8.onrender.com/api/product/${item.id}`, cartProduct, {
             headers: {
               "Content-Type": "multipart/form-data",
             },
