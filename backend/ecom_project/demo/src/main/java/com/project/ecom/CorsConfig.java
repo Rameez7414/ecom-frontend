@@ -14,8 +14,10 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("https://ecom-frontend-mocha.vercel.app/")
-                        .allowedMethods("*");
+                        .allowedOrigins("https://ecom-frontend-mocha.vercel.app")
+                        .allowedMethods("*")
+                        .allowedHeaders("*")
+                        .allowCredentials(true);
             }
         };
     }
