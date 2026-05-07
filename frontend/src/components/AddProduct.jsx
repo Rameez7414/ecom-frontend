@@ -34,7 +34,7 @@ const AddProduct = () => {
     );
 
     axios
-      .post("https://ecom-backend-z0h8.onrender.com/api", formData, {
+      .post("https://ecom-backend-z0h8.onrender.com/api/product", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
