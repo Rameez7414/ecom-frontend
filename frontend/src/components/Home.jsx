@@ -7,6 +7,7 @@ import unplugged from "../assets/unplugged.png"
 const Home = ({ selectedCategory }) => {
   const { data, isError, addToCart, refreshData } = useContext(AppContext);
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [isDataFetched, setIsDataFetched] = useState(false);
 
   useEffect(() => {
@@ -39,11 +40,21 @@ const Home = ({ selectedCategory }) => {
           })
         );
         setProducts(updatedProducts);
+        setLoading(false);
       };
 
       fetchImagesAndUpdateProducts();
     }
   }, [data]);
+  useEffect(() => {
+  if (data && data.length === 0) {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 30000);
+
+    return () => clearTimeout(timer);
+  }
+}, [data]);
 
   const filteredProducts = selectedCategory
     ? products.filter((product) => product.category === selectedCategory)
@@ -68,17 +79,37 @@ const Home = ({ selectedCategory }) => {
           padding: "20px",
         }}
       >
-        {filteredProducts.length === 0 ? (
-          <h2
-            className="text-center"
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            No Products Available
-          </h2>
+       {loading ? (
+  <div
+    className="d-flex flex-column justify-content-center align-items-center"
+    style={{
+      width: "100%",
+      height: "60vh",
+    }}
+  >
+    <div
+      className="spinner-border text-primary"
+      role="status"
+      style={{ width: "4rem", height: "4rem" }}
+    >
+      <span className="visually-hidden">Loading...</span>
+    </div>
+
+    <h4 className="mt-4">
+      Waking up server and loading products...
+    </h4>
+  </div>
+) : filteredProducts.length === 0 ? (
+  <h2
+    className="text-center"
+    style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    }}
+  >
+    No Products Available
+  </h2>
         ) : (
           filteredProducts.map((product) => {
             const { id, brand, name, price, productAvailable, imageUrl } =
