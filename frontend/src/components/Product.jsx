@@ -60,12 +60,25 @@ const Product = () => {
     alert("Product added to cart");
   };
   if (!product) {
-    return (
-      <h2 className="text-center" style={{ padding: "10rem" }}>
-        Loading...
-      </h2>
-    );
-  }
+  return (
+    <div
+      className="d-flex flex-column justify-content-center align-items-center"
+      style={{ height: "70vh" }}
+    >
+      <div
+        className="spinner-border text-primary"
+        role="status"
+        style={{ width: "4rem", height: "4rem" }}
+      >
+        <span className="visually-hidden">Loading...</span>
+      </div>
+
+      <h4 className="mt-4">
+        Waking up server and loading product...
+      </h4>
+    </div>
+  );
+}
   return (
     <>
       <div className="containers" style={{ display: "flex" }}>
